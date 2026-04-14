@@ -1,0 +1,19 @@
+# Google Calendar credentials (never commit these)
+calendar/.google_client_secret.json
+calendar/.google_token.json
+calendar/.google_oauth_pending.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
