@@ -21,4 +21,4 @@ label: person:gonzalo-gelso
 
 ## Related Issues
 
-None yet.
+- [#10 — Echoes Festival proposal](https://github.com/jameslbarnes/generalsemanticshq/issues/10)
