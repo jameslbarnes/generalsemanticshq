@@ -1,72 +1,55 @@
-# Happy Oyster AI — Research Report
+# Happy Oyster — Alibaba's Open-Ended World Model
 
-**Date:** April 16, 2026  
-**Researcher:** Hermes (requested by James Barnes)  
-**URL:** https://happyoyster.ai  
-**Domain:** happyoysterai.com (for sale on Spaceship — not the active product)
+**Date:** April 16, 2026
+**Researcher:** Hermes (requested by James Barnes)
+**Announcement:** https://x.com/HappyOysterAI/status/2044618799089926428
+**Product:** https://www.happyoyster.cn/
+**Team:** Alibaba ATH (Advanced Technology Hub)
+**Contact:** HappyOyster@service.alibaba.com
 
 ---
 
 ## What It Is
 
-Happy Oyster is a consumer-facing web app that provides **real-time safety assessments for raw oyster consumption** across Europe. Its tagline: *"Should I eat you today? — Real-time safety for today's oysters."*
+Happy Oyster is an **open-ended world model product for real-time world creation and interaction**, built by Alibaba-ATH. It launched Early Access on April 16, 2026.
 
-The app was built using **Lovable** (formerly GPT Engineer), a no-code/low-code AI app builder. It runs on Supabase for backend/auth and uses the Open-Meteo weather archive API for environmental data.
+Tagline: *"The world is your oyster. Now, open it."*
 
-**Lovable Project:** https://lovable.dev/projects/83c55300-e510-4c8f-b22d-04a741233596
+Unlike traditional video generation tools where you submit a prompt and receive a finished clip, Happy Oyster lets users **create, explore, and direct inside persistent, interactive worlds in real time**.
 
 ---
 
-## How It Works
+## Two Core Modes
 
-### Data Sources
-- **Open-Meteo Archive API** — Historical and near-real-time precipitation and temperature data, fetched per-region based on oyster origin coordinates
-- **ipapi.co** — Geolocation to detect user's country and auto-select EU shipping zone
+### 1. Wandering Mode
+Users become **explorers**, freely moving through infinitely extendable worlds. The world model generates new environments as you navigate — there is no fixed boundary.
 
-### Risk Assessment Model
+- Text or image prompt creates an initial environment
+- Navigate freely within the generated world
+- World extends procedurally as you move
+- Consistent internal logic and lore maintained
 
-The app evaluates three risk dimensions:
+### 2. Directing Mode
+Users become **real-time directors**, transforming ideas into reality inside an endlessly evolving video stream.
 
-**1. Rainfall Risk (Norovirus/runoff contamination)**
-- Analyzes precipitation in the 5 days before harvest
-- `>25mm` single-day spike → DANGER (high runoff risk)
-- `>=15mm` single-day spike → CAUTION
-- `>50mm` cumulative over window → CAUTION (ground saturation)
-- Warns about viral contamination (Norovirus) from land runoff
+- Generate frames from natural language instantly
+- Direct scenes live — not batch render, actual real-time control
+- Branch stories by changing decisions
+- Apply effects: slow motion, time-lapse, shaking, rotation
+- Change backgrounds on the fly: aurora, forest, island, desert, glacier, planetary, underwater, ruins
 
-**2. Temperature Risk (Vibrio bacteria)**
-- `>25°C` water temp → DANGER (breeding ground for bacteria)
-- `>=20°C` → CAUTION
-- `<20°C` → SAFE
+---
 
-**3. Spawning Season (Texture/Quality)**
-- May through August (months 4-7) = spawning season
-- Diploid oysters become soft, milky, or mushy during this period
-- Only affects diploid varieties (not triploid)
+## Key Features
 
-**Overall Risk** = worst of rainfall + temperature risk. If both are DANGER, it's flagged as CRITICAL.
-
-### Oyster Brands Tracked
-Eight European premium brands with precise harvest coordinates:
-- **Belon (Flats)** — Riec-sur-Bélon, France (diploid)
-- **Fine de Claire** — Marennes, France (diploid)
-- **Gillardeau** — Marennes, France (diploid)
-- **Muirgen** — Cancale, France
-- **Ostra Regal** — Bannow Bay, Ireland
-- **Pousse en Claire** — Marennes, France (diploid)
-- **Sentinelles** — Bannow Bay, Ireland
-- **Tsarskaya** — Cancale, France
-
-### EU Shipping Zones
-The app calculates estimated harvest-to-table delay based on zone:
-- Zone 1 (France, Ireland, UK, Netherlands, Belgium): 2 days
-- Zone 2 (Germany, Italy, Spain, Switzerland, Austria, Denmark): 4 days
-- Zone 3 (Sweden, Norway, Finland, Poland, etc.): 6 days
-
-### Forward-Looking Features
-- **Next Batch Risk** — Projects risk for upcoming harvest based on weather forecast
-- **"Safer Next Week"** — Advises waiting if conditions are expected to improve
-- **Physical Safety Tips** — Includes visual/tactile inspection guide (plump, glossy, retracts on touch)
+- **Real-time interactive generation** — not pre-rendered video, actual live world model inference
+- **Persistent worlds** — journeys are auto-saved, every world keeps its own replay
+- **Multi-modal input** — text prompts, image uploads (scene images, role images, reference images), key frames
+- **Scenario/role system** — define characters and scenes separately for structured world-building
+- **Scene control instructions** — mid-session text commands to transform the environment
+- **Video export** — download full video with sound (BGM, sound effects, vocals) or stripped audio tracks
+- **Sharing** — worlds can be shared via links, with preview videos auto-generated
+- **World gallery** — browse and enter worlds created by other users (home feed with featured/popular worlds)
 
 ---
 
@@ -74,57 +57,111 @@ The app calculates estimated harvest-to-table delay based on zone:
 
 | Layer | Technology |
 |-------|-----------|
-| Framework | React (with React Query / TanStack) |
-| UI | Tailwind CSS + Radix UI (shadcn/ui components) |
-| Backend | Supabase (auth, real-time, database) |
-| Weather Data | Open-Meteo Archive API |
-| Geolocation | ipapi.co |
-| Builder | Lovable (GPT Engineer) |
-| Hosting | Lovable-hosted (lovable.app subdomain with custom domain) |
+| Frontend | React SPA |
+| 3D Rendering | Three.js |
+| Real-Time Streaming | Alibaba RTC SDK (artc:// protocol) |
+| Video Playback | Alibaba Player (ali-player), HLS support |
+| Storage | Alibaba OSS |
+| API Gateway | api-gateway.aorizon.com |
+| CDN | g.alicdn.com |
+| Hosting | happyoyster.cn (Alibaba Cloud) |
+| Internal Name | Aorizon World (future-life-web/aorizon-world-web) |
+| Analytics | Alibaba Aplus (mmstat.com) |
+| Auth | Google OAuth, device-based auth |
+
+### API Structure
+The backend exposes a RESTful API under a worldmodel namespace:
+- world/create — create a new world
+- travel/enter — enter an existing world
+- travel/instruct — send instructions during a session
+- travel/control — real-time control inputs
+- homepage/world/list — browse gallery
+- travel/download-url — export video
+- world/detail — world metadata
+
+Real-time video streaming uses Alibaba's proprietary ARTC protocol for low-latency delivery of the world model's output frames.
 
 ---
 
 ## Relevance to Etherea
 
-### Direct Code/Team Connection
-**None found.** No references to Happy Oyster in the etherea-ai codebase, hermes-agent, or GSHQ repos. No GSHQ team member profiles mention it. The GitHub user W1DEM4N has an unrelated Java "HappyOyster" project from 2020. The Lovable project user ID (oMYSdaAzmdZEivemSCAldAEfyU03) couldn't be traced to a known team member.
+This is **the most directly comparable product to Etherea** that has emerged from a major tech company.
 
-### Conceptual Parallels
+### Direct Overlaps
 
-Despite no direct connection, there are interesting thematic overlaps:
+1. **Real-time world model interaction**
+   - Both turn natural language into live visual experiences
+   - Both stream generated frames in real time, not batch-rendered video
+   - Both allow mid-session control and direction
 
-1. **Real-Time Environmental Data → Human Experience**
-   - Etherea: transforms speech into visual worlds in real time
-   - Happy Oyster: transforms weather/environmental data into eat/don't-eat decisions in real time
-   - Both bridge sensor data and lived experience
+2. **Speech/text to visual environment**
+   - Etherea: speech drives projected visual environments in physical spaces
+   - Happy Oyster: text prompts drive interactive digital worlds on screen
+   - Same fundamental paradigm: language in, living world out
 
-2. **Safety Through Sensing**
-   - Etherea's deployment contexts include medical (Johns Hopkins aphasia research)
-   - Happy Oyster is fundamentally about food safety through environmental monitoring
-   - Both apply real-time data processing to human wellbeing
+3. **Directing mode is essentially Etherea's core loop**
+   - Happy Oyster's "Directing" mode where users control an evolving video stream in real time is essentially what Etherea does with voice, projected onto walls
 
-3. **AI-Augmented Decision Making**
-   - Etherea uses LLMs (Claude, Gemini) to interpret speech and generate visual prompts
-   - Happy Oyster uses algorithmic risk scoring (not LLM-based, but data-driven AI-adjacent logic)
-   - Both reduce complex data to actionable outputs
+4. **Persistent, explorable worlds**
+   - Happy Oyster generates consistent worlds with internal logic
+   - Etherea maintains visual continuity within a session
 
-4. **European Focus / Cultural Context**
-   - Happy Oyster tracks French and Irish oyster appellations — premium food culture
-   - Etherea has deployed in culturally rich contexts (music festivals, art events, Soho showrooms)
-   - Both operate at the intersection of technology and cultural experience
+5. **GPU-intensive real-time inference**
+   - Both require powerful GPU backends for frame-by-frame generation
+   - Both face the same latency/quality tradeoffs
 
-### Potential Collaboration/Integration Ideas
+### Key Differences
 
-- **Etherea x Dining Experience:** Imagine an Etherea installation in an oyster bar where the visual environment changes based on the provenance and conditions of the oysters being served — projected terroir
-- **Sensor-Driven Generative Art:** Happy Oyster's environmental data (rainfall, temperature, marine conditions) could feed into Etherea's generative pipeline as ambient data inputs
-- **Food Safety Visualization:** Etherea's real-time projection system could visualize food safety data in restaurant/commercial kitchen contexts
+| Dimension | Etherea | Happy Oyster |
+|-----------|---------|-------------|
+| Input | Voice (speech) | Text + images |
+| Output | Projected into physical space | On-screen digital world |
+| Interaction | Ambient/environmental | Direct navigation/control |
+| Audio | Music-reactive, ambient sound | BGM/SFX added post-generation |
+| Context | Physical installations, events | Consumer web product |
+| Navigation | Passive (environment evolves around you) | Active (user moves through world) |
+| Scale | 50,000+ attendees across events | Early access, ~1,000 X followers |
+| Team | Independent (General Semantics) | Alibaba (massive R&D budget) |
+| Model | StreamDiffusion + LLM prompt pipeline | Proprietary world model |
+
+### Strategic Implications
+
+1. **Validation** — Alibaba building essentially the same core concept (real-time language-to-world) validates Etherea's thesis that this is a major product category
+
+2. **Differentiation matters** — Happy Oyster is screen-based; Etherea is physical-space-first. This is a crucial moat. Projecting into rooms, syncing with music, voice-driven — none of that is in Happy Oyster
+
+3. **The "directing" use case is real** — Happy Oyster explicitly calls out "Real-Time Film & Video Production" as a use case, which aligns with Etherea's potential in live performance/events
+
+4. **Alibaba has scale but not soul** — Happy Oyster is a consumer product with a gallery feed. Etherea creates shared human experiences. The Anthropic engineer saying Etherea "gave Claude a paintbrush" — that emotional resonance is not something a big tech product easily replicates
+
+5. **Potential threat to fundraising narrative** — "Alibaba is doing this too" can cut both ways. It validates the market but could make investors ask why not just wait for big tech. The answer is the physical/experiential angle
+
+6. **Watch their model capabilities** — If Alibaba open-sources or publishes the underlying world model, it could be directly useful as a drop-in replacement or complement to Etherea's current StreamDiffusion + LLM pipeline
 
 ---
 
-## Assessment
+## Open Questions
 
-Happy Oyster is a niche but well-executed consumer app in the food safety/transparency space. It's technically simple (no-code Lovable build, pure client-side risk scoring, no ML models) but conceptually sharp — it solves a real problem for European raw oyster consumers.
+- What world model architecture powers Happy Oyster? (DiT-based? Diffusion? Autoregressive?)
+- What latency and resolution do they achieve? (Etherea comparison)
+- Will they open-source the model or keep it proprietary?
+- Is there a paper forthcoming?
+- What's "Alibaba ATH" exactly — is this Alibaba Cloud, DAMO Academy, or a new division?
+- The internal name "Aorizon" and package name "future-life-web" suggest this may be part of a larger Alibaba initiative
 
-The connection to Etherea is **thematic rather than technical**. Both products exemplify the pattern of using real-time data processing to enhance human experience and decision-making, but they share no code, infrastructure, team members, or direct business relationship.
+---
 
-If someone on the GSHQ team built this, it was likely as a personal project using Lovable, completely separate from the Etherea codebase.
+## Social Presence
+
+- **X/Twitter:** @HappyOysterAI (created April 13, 2026 — 3 days before launch)
+- **Followers:** ~1,043
+- **Tweets:** 3
+- **Engagement on launch tweet:** 325 likes, 60 RTs, 29 quotes, 113K views
+- **Verified:** Yes (individual verification)
+- **Following:** 4 accounts (worth checking who)
+
+---
+
+## Bottom Line
+
+This is the first time a major tech company has shipped a consumer product in exactly the space Etherea occupies — real-time, language-driven, interactive world generation. Alibaba's entry validates the category but also raises the competitive stakes. Etherea's physical-space, voice-first, experiential positioning becomes even more important as a differentiator.
