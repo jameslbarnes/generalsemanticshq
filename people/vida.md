@@ -1,19 +1,19 @@
 ---
 name: Vida
-org: Barrel Elite
-role: YouTube Channel Host
+org:
+role: Set Designer / Experiential Producer
 email:
 phone:
 telegram:
 github:
-tags: [media, youtube, collaborator]
+tags: [design, production, experiential, collaborator]
 label: person:vida
 ---
 
 # Vida
 
-Runs or hosts Barrel Elite's YouTube channel.
+Set designer and experiential producer. Partners with David.
 
 ## Relationship to GSHQ
 
-Interviewed James about Etheria on 4/15/2026 at the convent. The recording went well and the team sees it as a foundation for future presentation formats. Potential ongoing media/content partnership.
+Connected through David (see vita-and-david). Present at the 4/15/2026 dinner.
