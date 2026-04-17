@@ -17,6 +17,7 @@ Issues are tagged with `person:name` labels to connect tasks to people:
 - `person:vita-david` — Vita and David
 - `person:wayne-ashley` — Wayne Ashley
 - `person:gonzalo-gelso` — Gonzalo Gelso
+- `person:james-disguise` — James (Disguise)
 
 Category labels:
 - `venue` — venue/space related
