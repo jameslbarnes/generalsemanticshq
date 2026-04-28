@@ -30,7 +30,7 @@
 |------|-------|-----|-----------|--------|----------|----------|-------|
 | JMGO O2S Ultra (Projector) | 4K UST, 3600 lm, triple laser RGB | 1 | $2,599.00 | planned | — | — | Hero wall — primary surface |
 | Optoma GT2100HDR (Projector) | 1080p ST, 4200 lm, 0.49:1, laser 24/7 | 3 | $1,149.00 | planned | — | — | Short throw, RS232 control |
-| Ceiling / wall mount bracket | Universal projector mount | 4 | $199.99 | planned | — | — | |
+| Ceiling / wall mount bracket | Universal projector mount | 4 | $199.99 | 1 of 4 received | — | — | 1 arrived Apr 28, 3 pending ||
 | Short HDMI 2.0 Cable (6ft) | Orin to projector local connect | 4 | $9.99 | planned | — | — | Only short runs needed |
 
 **Subtotal: ~$6,886**
